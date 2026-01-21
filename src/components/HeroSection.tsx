@@ -119,27 +119,27 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       id="hero"
     >
       {/* Parallax Background Layers */}
-      <div 
+      <div
         ref={layer3Ref}
         className="absolute inset-0 opacity-20"
         style={{
           background: 'radial-gradient(ellipse at center, hsl(16, 100%, 20%) 0%, transparent 60%)'
         }}
       />
-      <div 
+      <div
         ref={layer2Ref}
         className="absolute inset-0 opacity-10"
         style={{
           background: 'radial-gradient(ellipse at 30% 70%, hsl(43, 100%, 30%) 0%, transparent 50%)'
         }}
       />
-      <div 
+      <div
         ref={layer1Ref}
         className="absolute inset-0"
         style={{
@@ -148,7 +148,7 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Vignette effect */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse at center, transparent 40%, hsl(0, 0%, 2%) 100%)'
@@ -157,14 +157,14 @@ const HeroSection: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 
+        <h1
           ref={titleRef}
-          className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold text-ember-gradient mb-6 tracking-wide"
+          className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold text-bone text-shadow-ember mb-6 tracking-wide"
         >
           Lothric Codex
         </h1>
-        
-        <p 
+
+        <p
           ref={subtitleRef}
           className="font-cinzel text-xl md:text-2xl text-bone/80 mb-12 tracking-[0.2em] uppercase"
         >
