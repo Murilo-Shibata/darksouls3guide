@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Souls Theme - The Fire Fades Aesthetic */
+    --background: 0 0% 4%; /* #0a0a0a Pure Dark */
+    --foreground: 0 0% 90%; /* #e5e5e5 Bone White */
+
+    --card: 0 0% 8%; /* Slightly lighter for cards */
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 16 100% 50%; /* #ff4500 Orange Ember */
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 18%; /* #2d2d2d Slate Stone */
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 43 100% 50%; /* #ffd700 Antique Gold */
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 70% 45%; /* Blood Red */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 16 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom Dark Souls Variables */
+    --ember: 16 100% 50%;
+    --ember-glow: 16 100% 60%;
+    --gold: 43 100% 50%;
+    --gold-dim: 43 80% 40%;
+    --blood: 0 100% 30%;
+    --blood-bright: 0 100% 50%;
+    --ash: 0 0% 25%;
+    --bone: 40 20% 85%;
+    --abyss: 0 0% 2%;
+
+    /* Glassmorphism */
+    --glass-bg: 0 0% 10% / 0.6;
+    --glass-border: 0 0% 30% / 0.3;
+    --glass-blur: 10px;
+
+    /* Shadows */
+    --shadow-ember: 0 0 30px hsl(16 100% 50% / 0.3);
+    --shadow-gold: 0 0 20px hsl(43 100% 50% / 0.2);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+
+  /* Custom Scrollbar - Dark Souls Theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--abyss));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--ash));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--ember));
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Metal Border Effect */
+  .metal-border {
+    border: 1px solid hsl(var(--ash));
+    box-shadow: 
+      inset 0 1px 0 hsl(0 0% 30% / 0.3),
+      inset 0 -1px 0 hsl(0 0% 5% / 0.5);
+  }
+
+  /* Ember Glow Effect */
+  .ember-glow {
+    box-shadow: var(--shadow-ember);
+  }
+
+  /* Gold Glow Effect */
+  .gold-glow {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Text Ember Gradient */
+  .text-ember-gradient {
+    background: linear-gradient(135deg, hsl(var(--ember)) 0%, hsl(var(--gold)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated Ember Border */
+  .ember-border {
+    position: relative;
+  }
+
+  .ember-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--ember)), hsl(var(--gold)), hsl(var(--ember)));
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ember-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Particle Effect Container */
+  .particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  /* YOU DIED text effect */
+  .you-died {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: hsl(var(--blood-bright));
+    text-shadow: 
+      0 0 10px hsl(var(--blood)),
+      0 0 20px hsl(var(--blood)),
+      0 0 40px hsl(var(--blood-bright) / 0.5);
+  }
+
+  /* Bonfire Light Effect */
+  .bonfire-glow {
+    background: radial-gradient(
+      ellipse at center bottom,
+      hsl(var(--ember) / 0.15) 0%,
+      hsl(var(--gold) / 0.08) 30%,
+      transparent 70%
+    );
+  }
+
+  /* Fire Stars (Difficulty Rating) */
+  .fire-star {
+    color: hsl(var(--ember));
+    filter: drop-shadow(0 0 4px hsl(var(--ember)));
+  }
+
+  .fire-star-empty {
+    color: hsl(var(--ash));
+  }
+
+  /* Horizontal Scroll Section */
+  .horizontal-scroll-section {
+    overflow: hidden;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    width: max-content;
+  }
+
+  /* Typewriter Cursor */
+  .typewriter-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: hsl(var(--ember));
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* Shake Animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+  }
+
+  .shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  /* Pulse Ember */
+  @keyframes pulseEmber {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--ember) / 0.5),
+                  0 0 40px hsl(var(--ember) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--ember) / 0.8),
+                  0 0 80px hsl(var(--ember) / 0.5);
+    }
+  }
+
+  .pulse-ember {
+    animation: pulseEmber 2s ease-in-out infinite;
+  }
+
+  /* Float Animation for Particles */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  .float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Ash Particle */
+  .ash-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--bone) / 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Spark Particle */
+  .spark-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: hsl(var(--ember));
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 6px hsl(var(--ember));
+  }
+}
+
+@layer utilities {
+  .text-shadow-ember {
+    text-shadow: 0 0 10px hsl(var(--ember) / 0.5);
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 0 10px hsl(var(--gold) / 0.5);
+  }
+
+  .bg-gradient-ember {
+    background: linear-gradient(135deg, hsl(var(--ember)) 0%, hsl(var(--gold)) 100%);
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--abyss)) 100%);
+  }
+
+  .border-gradient-ember {
+    border-image: linear-gradient(135deg, hsl(var(--ember)), hsl(var(--gold))) 1;
+  }
+}
