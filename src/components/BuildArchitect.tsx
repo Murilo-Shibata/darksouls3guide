@@ -17,14 +17,16 @@ const BuildArchitect: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <h2 className="font-cinzel text-4xl md:text-5xl text-center text-ember-gradient mb-16">Build Architect</h2>
 
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex flex-col md:flex-row justify-center gap-4 mb-12">
           {builds.map(b => {
             const BIcon = iconMap[b.icon as keyof typeof iconMap];
             return (
               <button
                 key={b.id}
                 onClick={() => { setActiveId(b.id); playSound('metalClick'); }}
-                className={`flex items-center gap-2 px-6 py-3 font-cinzel rounded border transition-all ${activeId === b.id ? 'border-ember bg-ember/10 text-ember' : 'border-ash text-muted-foreground hover:border-ember/50'
+                className={`flex items-center justify-center gap-2 px-6 py-3 font-cinzel rounded border transition-all ${activeId === b.id
+                    ? 'border-ember bg-ember/10 text-ember'
+                    : 'border-ash text-muted-foreground hover:border-ember/50'
                   }`}
               >
                 <BIcon className="w-5 h-5" />
