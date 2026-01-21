@@ -287,6 +287,21 @@
     pointer-events: none;
     box-shadow: 0 0 6px hsl(var(--ember));
   }
+
+  /* Damage Flash Animation */
+  @keyframes damage-flicker {
+    0% { filter: sepia(1) saturate(500%) hue-rotate(-50deg) brightness(0.8) contrast(1.5); }
+    5% { filter: sepia(1) saturate(500%) hue-rotate(-50deg) brightness(0.8) contrast(1.5); transform: translateX(-2px); }
+    10% { transform: translateX(2px); }
+    15% { transform: translateX(-2px); }
+    20% { transform: translateX(2px); }
+    50% { filter: sepia(1) saturate(500%) hue-rotate(-50deg) brightness(0.8) contrast(1.5); }
+    100% { filter: none; transform: none; }
+  }
+
+  .damage-flash {
+    animation: damage-flicker 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
 }
 
 @layer utilities {
